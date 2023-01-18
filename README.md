@@ -1,5 +1,9 @@
 # weather-challenge
 Simple forecast application. 
+
+# Note 
+Please note that there is no ApiKey since in probably private and for correct performance you should api WEATHER_API_KEY in apikey.properties file.
+
 # Architecture
 In this application I'm using Clean architecture. In small project probably it seems little bit excess, but in big projects it's super useful. 
 Idealy data/domain/common packages would be moved to android modules. 
