@@ -2,7 +2,7 @@
 Simple forecast application. 
 
 # Note 
-Please note that there is no ApiKey since in probably private and for correct performance you should api WEATHER_API_KEY in apikey.properties file.
+Please note that there is no ApiKey since it is probably private and for correct performance you should add WEATHER_API_KEY in apikey.properties file.
 
 # Architecture
 In this application I'm using Clean architecture. In small project probably it seems little bit excess, but in big projects it's super useful. 
