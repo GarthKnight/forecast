@@ -4,6 +4,8 @@ import android.content.Context
 import com.example.pirates_challenge.data.api.ApiService
 import com.example.pirates_challenge.domain.repository.LocationRepository
 import com.example.pirates_challenge.data.repository.location.LocationRepositoryImpl
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,8 +25,14 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideLocationRepository(@ApplicationContext context: Context): LocationRepository {
-        return LocationRepositoryImpl(context)
+    fun provideLocationProvider(@ApplicationContext context: Context): FusedLocationProviderClient {
+        return LocationServices.getFusedLocationProviderClient(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationRepository(locationProviderClient: FusedLocationProviderClient): LocationRepository {
+        return LocationRepositoryImpl(locationProviderClient)
     }
 
 }

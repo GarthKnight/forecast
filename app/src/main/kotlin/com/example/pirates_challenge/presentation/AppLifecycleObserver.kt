@@ -11,11 +11,8 @@ import javax.inject.Inject
 
 
 class AppLifecycleObserver @Inject constructor(
-    @ApplicationContext private val context: Context
+    private val workManager: WorkManager
 ) : LifecycleEventObserver {
-
-
-    private val workManager = WorkManager.getInstance(context)
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         when (event) {
@@ -24,8 +21,8 @@ class AppLifecycleObserver @Inject constructor(
             }
             Lifecycle.Event.ON_STOP -> {
                 val repeatingRequest = PeriodicWorkRequestBuilder<ForecastWorker>(
-                    15, TimeUnit.MINUTES
-                ).setInitialDelay(15, TimeUnit.MINUTES).build()
+                    DELAY_MIN, TimeUnit.MINUTES
+                ).setInitialDelay(DELAY_MIN, TimeUnit.MINUTES).build()
 
                 workManager.enqueueUniquePeriodicWork(
                     ForecastWorker.TAG,
@@ -37,6 +34,10 @@ class AppLifecycleObserver @Inject constructor(
                 //no-op
             }
         }
+    }
+
+    companion object {
+        private const val DELAY_MIN = 15L
     }
 
 }

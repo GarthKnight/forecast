@@ -39,7 +39,8 @@ class ForecastFragment : Fragment(R.layout.fragment_forecast) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     notificationPermissionRequest.launch(arrayOf(Manifest.permission.POST_NOTIFICATIONS))
                 } else {
-                    viewLifecycleOwner.lifecycle.addObserver(observer)
+                    activity?.lifecycle?.addObserver(observer)
+                        ?: viewLifecycleOwner.lifecycle.addObserver(observer)
                 }
             }
             else -> {
@@ -66,6 +67,11 @@ class ForecastFragment : Fragment(R.layout.fragment_forecast) {
 
         setupUi()
         observeValues()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     private fun setupUi() {

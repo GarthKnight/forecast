@@ -20,6 +20,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         setupUi()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     private fun setupUi() {
         binding?.let {
             val forecast = args.forecast

@@ -44,7 +44,7 @@ class ForecastViewModel @Inject constructor(
                 _errorFlow.value = R.string.location_permission_error_message
             }
             else -> {
-                R.string.default_error_message
+                _errorFlow.value = R.string.default_error_message
             }
         }
     }
