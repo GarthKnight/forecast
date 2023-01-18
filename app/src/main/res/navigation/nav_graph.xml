@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/forecast_fragment">
+
+    <fragment
+        android:id="@+id/forecast_fragment"
+        android:name="com.example.pirates_challenge.presentation.ForecastFragment"
+        android:label="@string/forecast_label"
+        tools:layout="@layout/fragment_forecast">
+
+        <action
+            android:id="@+id/forecast_fragment_to_detail_fragment"
+            app:destination="@id/detail_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.example.pirates_challenge.presentation.DetailFragment"
+        android:label="@string/detail_label" >
+
+        <argument
+            android:name="forecast"
+            app:argType="com.example.pirates_challenge.domain.model.forecast.DailyForecast" />
+    </fragment>
+
+
+</navigation>
